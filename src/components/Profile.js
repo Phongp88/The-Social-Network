@@ -5,10 +5,14 @@ import { Link } from "react-router-dom";
 //MUI
 import Button from "@material-ui/core/Button";
 import MuiLink from "@material-ui/core/Link";
+import IconButton from "@material-ui/core/IconButton"
+import EditIcon from "@material-ui/icons/Edit"
+import Tooltip from "@material-ui/core/Tooltip"
 // Redux
 import { connect } from "react-redux";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
+import {logoutUser, uploadImage} from '../redux/actions/userAction'
 // Icons
 import LocationOn from "@material-ui/icons/LocationOn";
 import LinkIcon from "@material-ui/icons/Link";
@@ -19,6 +23,17 @@ const styles = theme => ({
   ...theme.userProfile
 });
 export class Profile extends Component {
+  handleImageChange = event => {
+    const image = event.target.files[0];
+    // Send image to server
+    const formData = new FormData();
+    formData.append('image', image, image.name);
+    this.props.uploadImage(formData);
+  };
+  handleEditPicture = () => {
+    const fileInput = document.getElementById("imageInput");
+    fileInput.click();
+  }
   render() {
     const {
       classes,
@@ -35,6 +50,17 @@ export class Profile extends Component {
           <div className={classes.profile}>
             <div className="image-wrapper">
               <img src={imageUrl} alt="profile" className="profile-image" />
+              <input
+                type="file"
+                id="imageInput"
+                hidden="hidden"
+                onChange={this.handleImageChange}
+              ></input>
+              <Tooltip title="Edit profile picture" placement="top">
+                <IconButton onClick={this.handleEditPicture} className="button">
+                  <EditIcon color="primary"/>
+                </IconButton>
+              </Tooltip>
               <input
                 type="file"
                 id="imageInput"
@@ -112,8 +138,12 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
+const mapActionToProps = { logoutUser, uploadImage}
+
 Profile.protoTypes = {
+  logoutUser: Proptypes.func.isRequired,
+  uploadImage: Proptypes.func.isRequired,
   user: Proptypes.object.isRequired,
   classes: Proptypes.object.isRequired
 };
-export default connect(mapStateToProps)(withStyles(styles)(Profile));
+export default connect(mapStateToProps, mapActionToProps)(withStyles(styles)(Profile));
