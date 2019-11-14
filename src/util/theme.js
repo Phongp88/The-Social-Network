@@ -44,7 +44,6 @@ export default {
     },
   userProfile: {
     profile: {
-      padding: 20,
       '& .image-wrapper': {
         textAlign: 'center',
         position: 'relative',
@@ -85,6 +84,9 @@ export default {
       '& a': {
         margin: '20px 10px'
       }
+    },
+    paper: {
+      padding: 20
     }
   }
   }
