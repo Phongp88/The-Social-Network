@@ -2,11 +2,11 @@ import React, { Component, Fragment } from "react";
 import Proptypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { Link } from "react-router-dom";
+import EditDetails from "./EditDetails"
 //MUI
 import Button from "@material-ui/core/Button";
 import MuiLink from "@material-ui/core/Link";
 import IconButton from "@material-ui/core/IconButton";
-import EditIcon from "@material-ui/icons/Edit";
 import Tooltip from "@material-ui/core/Tooltip";
 import KeyboardReturn from "@material-ui/icons/KeyboardReturn"
 // Redux
@@ -18,6 +18,7 @@ import { logoutUser, uploadImage } from "../redux/actions/userAction";
 import LocationOn from "@material-ui/icons/LocationOn";
 import LinkIcon from "@material-ui/icons/Link";
 import CalendarToday from "@material-ui/icons/CalendarToday";
+import EditIcon from "@material-ui/icons/Edit";
 import dayjs from "dayjs";
 
 const styles = theme => ({
@@ -109,6 +110,7 @@ export class Profile extends Component {
                 <KeyboardReturn color="primary"/>
               </IconButton>
             </Tooltip>
+            <EditDetails/>
           </div>
         </Paper>
       ) : (
