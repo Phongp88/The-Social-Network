@@ -53,7 +53,7 @@ export default function(state = initalState, action) {
       return {
         ...state,
         likes: state.likes.filter(
-          likes => likes.screamId === action.payload.screamId
+          likes => likes.screamId !== action.payload.screamId
         )
       };
     default:
