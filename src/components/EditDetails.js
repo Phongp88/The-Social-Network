@@ -57,8 +57,8 @@ export class EditDetails extends Component {
   handleSubmit = () => {
       const userDetails = {
           bio: this.state.bio,
-          bio: this.state.website,
-          bio: this.state.location
+          website: this.state.website,
+          location: this.state.location
       }
       this.props.editUserDetails(userDetails);
       this.handleClose()
