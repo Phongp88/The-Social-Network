@@ -5,8 +5,6 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import { connect } from "react-redux";
 import { editUserDetails } from "../redux/actions/userAction";
 // MUI
-import Tooltip from "@material-ui/core/Tooltip";
-import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -15,10 +13,11 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import TextField from "@material-ui/core/TextField";
 // Icons
 import EditIcon from "@material-ui/icons/Edit";
+import MyButton from "../util/MyButton";
 const styles = theme => ({
   ...theme.frontPage,
   button: {
-      float: "right"
+    float: "right"
   }
 });
 
@@ -55,23 +54,21 @@ export class EditDetails extends Component {
     });
   };
   handleSubmit = () => {
-      const userDetails = {
-          bio: this.state.bio,
-          website: this.state.website,
-          location: this.state.location
-      }
-      this.props.editUserDetails(userDetails);
-      this.handleClose()
-  }
+    const userDetails = {
+      bio: this.state.bio,
+      website: this.state.website,
+      location: this.state.location
+    };
+    this.props.editUserDetails(userDetails);
+    this.handleClose();
+  };
   render() {
     const { classes } = this.props;
     return (
       <Fragment>
-        <Tooltip title="Edit details" placement="top">
-          <IconButton onClick={this.handleOpen} className={classes.button}>
+        <MyButton tip="Edit Details" onClick={this.handleOpen} btnClassName={classes.button}>
             <EditIcon color="primary" />
-          </IconButton>
-        </Tooltip>
+        </MyButton>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
@@ -116,12 +113,12 @@ export class EditDetails extends Component {
             </form>
           </DialogContent>
           <DialogActions>
-              <Button onClick={this.handleClose} color="primary">
-                  Cancel
-              </Button>
-              <Button onClick={this.handleSubmit} color="primary">
-                  Save
-              </Button>
+            <Button onClick={this.handleClose} color="primary">
+              Cancel
+            </Button>
+            <Button onClick={this.handleSubmit} color="primary">
+              Save
+            </Button>
           </DialogActions>
         </Dialog>
       </Fragment>
