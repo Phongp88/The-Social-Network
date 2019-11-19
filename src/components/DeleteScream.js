@@ -19,7 +19,11 @@ const styles = {
     deleteButton: {
         position: "absolute",
         left: '90%',
-        top: "10%"
+        top: "10%",
+        color: "black"
+    },
+    deleteText: {
+      color: "black"
     }
 };
 
@@ -46,7 +50,7 @@ export class DeleteScream extends Component {
           onClick={this.handleOpen}
           btnClassName={classes.deleteButton}
         >
-          <DeleteOutline color="secondary" />
+          <DeleteOutline />
         </MyButton>
         <Dialog
           open={this.state.open}
@@ -60,7 +64,7 @@ export class DeleteScream extends Component {
                     <Button onClick={this.handleClose} color="primary">
                         Cancel
                     </Button>
-                    <Button onClick={this.deleteScream} color="primary">
+                    <Button onClick={this.deleteScream} className={classes.deleteText}>
                         Delete
                     </Button>
                 </DialogActions>
