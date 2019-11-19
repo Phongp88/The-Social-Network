@@ -7,7 +7,7 @@ export default {
       dark: "#b28d1c"
     },
     secondary: {
-      main: "#fafafa",
+      main: "#000000",
       contrastText: "black",
       light: "#fbfbfb",
       dark: "#afafaf"
