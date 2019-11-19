@@ -10,9 +10,6 @@ import { connect } from "react-redux";
 import { likeScream, unlikeScream } from "../redux/actions/dataAction";
 
 export class LikeButton extends Component {
-  componentWillReceiveProps (nextProps) {
-    console.log(nextProps)
-  }
   likedScream = () => {
     if (
       this.props.user.likes &&
