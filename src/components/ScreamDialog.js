@@ -15,11 +15,13 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 // Icons
 import CloseIcon from "@material-ui/icons/Close";
+import ChatIcon from "@material-ui/icons/Chat";
 import UnfoldMore from "@material-ui/icons/UnfoldMore";
 // Redux
 import { connect } from "react-redux";
 import { getScream } from "../redux/actions/dataAction";
 import dayjs from "dayjs";
+import { LikeButton } from "./LikeButton";
 
 const styles = theme => ({
   ...theme.userProfile,
@@ -78,7 +80,8 @@ class ScreamDialog extends Component {
         userImage,
         userHandle
       },
-      UI: { loading }
+      UI: { loading },
+      user
     } = this.props;
     const DialogMarkup = loading ? (
       <div className={classes.spinnerDiv}>
@@ -103,6 +106,12 @@ class ScreamDialog extends Component {
             {dayjs(createdAt).format("h:mm a, MMMM DD YYYY")}
           </Typography>
           <Typography variant="body1">{body}</Typography>
+          <LikeButton screamId={screamId} user={user}/>
+          <span>{likeCount} Likes</span>
+          <MyButton tip="Comments">
+            <ChatIcon color="primary" />
+          </MyButton>
+          <span>{commentCount} comments</span>
         </Grid>
       </Grid>
     );
@@ -142,12 +151,14 @@ ScreamDialog.propTypes = {
   screamId: Proptypes.string.isRequired,
   userHandle: Proptypes.string.isRequired,
   scream: Proptypes.object.isRequired,
-  UI: Proptypes.object.isRequired
+  UI: Proptypes.object.isRequired,
+  user: Proptypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   scream: state.data.scream,
-  UI: state.UI
+  UI: state.UI,
+  user: state.user
 });
 
 const mapActionsToProps = {
