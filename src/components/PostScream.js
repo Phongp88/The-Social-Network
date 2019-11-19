@@ -15,13 +15,15 @@ import AddIcon from "@material-ui/icons/Add";
 import CloseIcon from "@material-ui/icons/Close";
 // Redux
 import { connect } from "react-redux";
-import { postScream } from "../redux/actions/dataAction";
+import { postScream, clearErrors } from "../redux/actions/dataAction";
 import MyButton from "../util/MyButton";
 
 const styles = theme => ({
   ...theme.frontPage,
   submitButton: {
-    position: "relative"
+    position: "relative",
+    float: "right",
+    marginTop: 10
   },
   progressSpinner: {
     position: "absolute"
@@ -29,7 +31,7 @@ const styles = theme => ({
   closeButton: {
     position: "absolute",
     left: "90%",
-    top: "10%"
+    top: "3%"
   },
   dialogBox: {
       paddingBottom: 15
@@ -49,14 +51,14 @@ class PostScream extends Component {
           })
       }
       if(!nextProps.UI.errors && !nextProps.UI.loading) {
-          this.setState({body: ""});
-          this.handleClose();
+          this.setState({body: "",  open: false, errors: {} });
       }
   }
   handleOpen = () => {
     this.setState({ open: true });
   };
   handleClose = () => {
+    this.props.clearErrors()
     this.setState({ open: false, errors: {} });
   };
   handleChange = (event) => {
@@ -132,13 +134,13 @@ class PostScream extends Component {
 PostScream.propTypes = {
   postScream: Proptypes.func.isRequired,
   UI: Proptypes.object.isRequired,
-  classes: Proptypes.object.isRequired
+  clearErrors: Proptypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   UI: state.UI
 });
 
-export default connect(mapStateToProps, { postScream })(
+export default connect(mapStateToProps, { postScream, clearErrors })(
   withStyles(styles)(PostScream)
 );
