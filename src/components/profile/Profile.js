@@ -3,7 +3,7 @@ import Proptypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { Link } from "react-router-dom";
 import EditDetails from "./EditDetails";
-import MyButton from "../util/MyButton";
+import MyButton from "../../util/MyButton";
 //MUI
 import Button from "@material-ui/core/Button";
 import MuiLink from "@material-ui/core/Link";
@@ -12,7 +12,7 @@ import KeyboardReturn from "@material-ui/icons/KeyboardReturn";
 import { connect } from "react-redux";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import { logoutUser, uploadImage } from "../redux/actions/userAction";
+import { logoutUser, uploadImage } from "../../redux/actions/userAction";
 // Icons
 import LocationOn from "@material-ui/icons/LocationOn";
 import LinkIcon from "@material-ui/icons/Link";

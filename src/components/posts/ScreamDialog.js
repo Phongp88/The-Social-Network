@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import Proptypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
-import MyButton from "../util/MyButton";
+import MyButton from "../../util/MyButton";
 import { Link } from "react-router-dom";
 // MUI
 import Button from "@material-ui/core/Button";
@@ -16,7 +16,7 @@ import ChatIcon from "@material-ui/icons/Chat";
 import UnfoldMore from "@material-ui/icons/UnfoldMore";
 // Redux
 import { connect } from "react-redux";
-import { getScream } from "../redux/actions/dataAction";
+import { getScream } from "../../redux/actions/dataAction";
 import dayjs from "dayjs";
 import LikeButton from "./LikeButton";
 
