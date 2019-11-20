@@ -9,7 +9,6 @@ import PostScream from "../posts/PostScream"
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
-import Tooltip from "@material-ui/core/Tooltip";
 
 // Icons
 import HomeIcon from "@material-ui/icons/Home";
