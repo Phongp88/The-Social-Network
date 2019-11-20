@@ -3,8 +3,8 @@ import Proptypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 import MyButton from "../../util/MyButton";
 import { Link } from "react-router-dom";
+import Comments from "./Comments";
 // MUI
-import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -22,22 +22,18 @@ import LikeButton from "./LikeButton";
 
 const styles = theme => ({
   ...theme.userProfile,
-  invisibleSeperator: {
-    border: "none",
-    margin: 4
-  },
   profileImage: {
-      maxWidth: 200,
-      height: 200,
-      borderRadius: "50%",
-      objectFit: "cover"
+    maxWidth: 200,
+    height: 200,
+    borderRadius: "50%",
+    objectFit: "cover"
   },
   dialogContent: {
-      padding: 20
+    padding: 20
   },
   closeButton: {
-      position: "absolute",
-      left: "90%"
+    position: "absolute",
+    left: "90%"
   },
   expandButton: {
     position: "absolute",
@@ -75,10 +71,10 @@ class ScreamDialog extends Component {
         likeCount,
         commentCount,
         userImage,
-        userHandle
+        userHandle,
+        comments
       },
-      UI: { loading },
-      user
+      UI: { loading }
     } = this.props;
     const DialogMarkup = loading ? (
       <div className={classes.spinnerDiv}>
@@ -103,13 +99,15 @@ class ScreamDialog extends Component {
             {dayjs(createdAt).format("h:mm a, MMMM DD YYYY")}
           </Typography>
           <Typography variant="body1">{body}</Typography>
-          <LikeButton screamId={screamId}/>
+          <LikeButton screamId={screamId} />
           <span>{likeCount} Likes</span>
           <MyButton tip="Comments">
             <ChatIcon color="primary" />
           </MyButton>
           <span>{commentCount} comments</span>
         </Grid>
+        <hr className={classes.visibleSeperator}/>
+        <Comments comments={comments}/>
       </Grid>
     );
     return (
@@ -148,14 +146,12 @@ ScreamDialog.propTypes = {
   screamId: Proptypes.string.isRequired,
   userHandle: Proptypes.string.isRequired,
   scream: Proptypes.object.isRequired,
-  UI: Proptypes.object.isRequired,
-  user: Proptypes.object.isRequired
+  UI: Proptypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   scream: state.data.scream,
-  UI: state.UI,
-  user: state.user
+  UI: state.UI
 });
 
 const mapActionsToProps = {
