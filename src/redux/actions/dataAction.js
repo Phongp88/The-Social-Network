@@ -54,7 +54,6 @@ export const postScream = newScream => dispatch => {
   axios
     .post("/scream", newScream)
     .then(res => {
-      console.log(res.data);
       dispatch({
         type: POST_SCREAM,
         payload: res.data.resScream
