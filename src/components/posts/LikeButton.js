@@ -25,7 +25,6 @@ export class LikeButton extends Component {
     this.props.unlikeScream(this.props.screamId);
   };
   render() {
-    console.log(this.props);
     const {
       user: { authenticated }
     } = this.props;
