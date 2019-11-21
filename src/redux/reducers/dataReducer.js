@@ -40,9 +40,6 @@ export default function(state = initalState, action) {
         scream => scream.screamId === action.payload.screamId
       );
       state.screams[index] = action.payload;
-      if(state.scream.screamId === action.payload.screamId) {
-        state.scream = action.payload
-      }
       return {
         ...state
       };
@@ -62,12 +59,13 @@ export default function(state = initalState, action) {
           ...state.screams
         ]
       }
-    case SUBMIT_COMMENT: 
+    case SUBMIT_COMMENT:
     return {
       ...state,
       scream: {
         ...state.scream,
-        comments: [action.payload, ...state.scream.comments]
+        comments: [action.payload, ...state.scream.comments],
+        commentCount: state.scream.commentCount + 1
       }
     }
     default: {
