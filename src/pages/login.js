@@ -11,7 +11,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button"
 
 // Redux
-
+import {clearErrors} from "../redux/actions/dataAction"
 import {connect} from 'react-redux';
 import {loginUser} from '../redux/actions/userAction'
 
@@ -27,6 +27,9 @@ export class login extends Component {
       password: "",
       errors: {}
     };
+  }
+  componentDidMount(){
+    this.props.clearErrors()
   }
   // Updates the errors state that fetches from UI.errors
   componentWillReceiveProps(nextProps){
@@ -122,7 +125,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapActionsToProps = {
-  loginUser
+  loginUser,
+  clearErrors
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(login));

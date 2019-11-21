@@ -14,6 +14,7 @@ import Button from "@material-ui/core/Button";
 // Redux
 import {connect} from 'react-redux'
 import {signupUser} from '../redux/actions/userAction'
+import {clearErrors} from "../redux/actions/dataAction"
 const styles = theme => ({
   ...theme.frontPage
 });
@@ -29,6 +30,9 @@ export class signup extends Component {
       loading: false,
       errors: {}
     };
+  }
+  componentDidMount(){
+    this.props.clearErrors()
   }
   componentWillReceiveProps(nextProps){
     if(nextProps.UI.errors){
@@ -155,4 +159,4 @@ const mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps, {signupUser})(withStyles(styles)(signup));
+export default connect(mapStateToProps, {signupUser, clearErrors})(withStyles(styles)(signup));
